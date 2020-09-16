@@ -18,6 +18,7 @@ from django.conf.urls import include
 from django.urls import path
 
 from clientes.urls import urlpatterns as cliente_url
+from medicos.urls import urlpatterns as medico_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,3 +26,4 @@ urlpatterns = [
 ]
 
 urlpatterns += cliente_url
+urlpatterns += medico_url
