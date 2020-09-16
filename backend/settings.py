@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+
+    # Third party modules
+    'rest_framework',
+
+    # Apps
+    'clientes'
 ]
 
 REST_FRAMEWORK = {
@@ -114,6 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
+AUTH_USER_MODEL = 'clientes.Cliente'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
