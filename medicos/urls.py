@@ -9,11 +9,11 @@ from .views import (
 )
 
 urlpatterns = [
-    path('medicos/', include([
+    path('api/medicos/', include([
         path('', ListarMedicos.as_view()),
         path('<int:pk>', DetalhesMedico.as_view())
     ])),
-    path('especialidades/', include([
+    path('api/especialidades/', include([
         path('', ListarEspecialidades.as_view()),
         path('<int:pk>', DetalhesEspecialidade.as_view())
     ]))
