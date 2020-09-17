@@ -1,17 +1,19 @@
 from django.http import Http404
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework import generics
 from .serializers import MedicoSerializer, EspecialidadeSerializer
 from .models import Medico, Especialidade
 
 
 
-class ListarMedicos(APIView):
-    def get(self, request):
-        medicos = Medico.objects.all()
-        serializer = MedicoSerializer(medicos, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class ListarMedicos(generics.ListAPIView):
+    queryset = Medico.objects.all()
+    serializer_class = MedicoSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['nome', 'especialidade__especialidade']
 
 
 class DetalhesMedico(APIView):
@@ -26,11 +28,12 @@ class DetalhesMedico(APIView):
         return Response(serializer.data)
 
 
-class ListarEspecialidades(APIView):
-    def get(self, request):
-        especialidades = Especialidade.objects.all()
-        serializer = EspecialidadeSerializer(especialidades, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class ListarEspecialidades(generics.ListAPIView):
+    queryset = Especialidade.objects.all()
+    filter_backends = [SearchFilter]
+    serializer_class = EspecialidadeSerializer
+    search_fields = ['especialidade']
+
 
 class DetalhesEspecialidade(APIView):
     def get_object(self, pk):
