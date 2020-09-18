@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     # Apps
     'clientes',
     'medicos',
-    'consultas'
+    'consultas',
+    'agendas'
 ]
 
 REST_FRAMEWORK = {
