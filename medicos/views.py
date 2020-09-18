@@ -1,18 +1,12 @@
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import permission_classes
-from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework.decorators import permission_classes, api_view
 from rest_framework import generics
-from django.http import Http404
+from rest_framework import status
 
-from backend.permissions import IsOwner
 from .serializers import MedicoSerializer, EspecialidadeSerializer
 from .models import Medico, Especialidade
-
-
 
 class ListarMedicos(generics.ListAPIView):
     queryset = Medico.objects.all()
@@ -22,37 +16,33 @@ class ListarMedicos(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class DetalhesMedico(APIView):
-    def get_object(self, pk):
-        try:
-            return Medico.objects.get(pk=pk)
-        except Medico.DoesNotExist:
-            raise Http404
-
-    @permission_classes([IsAuthenticated])
-    def get(self, request, pk):
-        medico = self.get_object(pk)
-        serializer = MedicoSerializer(medico)
-        return Response(serializer.data)
-
-
 class ListarEspecialidades(generics.ListAPIView):
     queryset = Especialidade.objects.all()
     filter_backends = [SearchFilter]
     serializer_class = EspecialidadeSerializer
     search_fields = ['especialidade']
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, ]
 
 
-class DetalhesEspecialidade(APIView):
-    def get_object(self, pk):
-        try:
-            return Especialidade.objects.get(pk=pk)
-        except Especialidade.DoesNotExist:
-            raise Http404
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def detalhes_medico(request, pk):
+    try:
+        medico = Medico.objects.get(pk=pk)
+    except Medico.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-    @permission_classes([IsAuthenticated])
-    def get(self, request, pk):
-        especialidade = self.get_object(pk)
-        serializer = EspecialidadeSerializer(especialidade)
-        return Response(serializer.data)
+    serializer = MedicoSerializer(medico)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def detalhes_especialidade(request, pk):
+    try:
+        especialidade = Especialidade.objects.get(pk=pk)
+    except Especialidade.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = EspecialidadeSerializer(especialidade)
+    return Response(serializer.data, status=status.HTTP_200_OK)

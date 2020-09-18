@@ -1,8 +1,8 @@
 from django.urls import path
 from django.conf.urls import include, url
 
-from clientes.views import CriarCliente
+from .views import criar_cliente
 
 urlpatterns = [
-    path('api/', CriarCliente.as_view())
+    path('api/', criar_cliente)
 ]

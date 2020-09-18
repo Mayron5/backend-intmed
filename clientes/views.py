@@ -1,14 +1,20 @@
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import generics
 from rest_framework import status
-from rest_framework.views import APIView
+
 from .serializers import ClienteSerializer
+from .models import Cliente
 
-
-class CriarCliente(APIView):
-    def post(self, request):
-        data = request.data
-        serializer = ClienteSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+def criar_cliente(request):
+    serializer = ClienteSerializer(data=request.data)
+    if serializer.is_valid():
+        validated_data = serializer.validated_data
+        Cliente.objects.create_user(
+            validated_data['username'],
+            validated_data['email'],
+            validated_data['password']
+        )
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

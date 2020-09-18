@@ -19,6 +19,7 @@ from django.urls import path
 
 from clientes.urls import urlpatterns as cliente_url
 from medicos.urls import urlpatterns as medico_url
+from consultas.urls import urlpatterns as consulta_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,3 +28,4 @@ urlpatterns = [
 
 urlpatterns += cliente_url
 urlpatterns += medico_url
+urlpatterns += consulta_url
