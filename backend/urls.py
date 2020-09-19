@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 
-from clientes.urls import urlpatterns as cliente_url
-from medicos.urls import urlpatterns as medico_url
-from consultas.urls import urlpatterns as consulta_url
+from backend.apps.clientes.urls import urlpatterns as cliente_url
+from backend.apps.medicos.urls import urlpatterns as medico_url
+from backend.apps.consultas.urls import urlpatterns as consulta_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),

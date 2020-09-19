@@ -47,10 +47,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # Apps
-    'clientes',
-    'medicos',
-    'consultas',
-    'agendas'
+    'backend.apps.clientes',
+    'backend.apps.medicos',
+    'backend.apps.consultas',
+    'backend.apps.agendas'
 ]
 
 REST_FRAMEWORK = {

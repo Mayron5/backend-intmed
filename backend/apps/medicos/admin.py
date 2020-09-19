@@ -1,7 +1,7 @@
 from django.contrib import admin
 # Register your models here.
 
-from medicos.models import Especialidade, Medico
+from backend.apps.medicos.models import Especialidade, Medico
 
 
 class ManageMedico(admin.ModelAdmin):

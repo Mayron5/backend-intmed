@@ -1,5 +1,5 @@
 from django.contrib import admin
-from consultas.models import Consulta
+from backend.apps.consultas.models import Consulta
 
 
 class ManageConsulta(admin.ModelAdmin):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from medicos.models import Medico, Especialidade
+from backend.apps.medicos.models import Medico, Especialidade
 
 class EspecialidadeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,7 +8,7 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
 
 
 class MedicoSerializer(serializers.ModelSerializer):
-    especialidade = EspecialidadeSerializer(many=False, read_only=True)
     class Meta:
         model = Medico
         fields = ['id', 'nome', 'crm', 'especialidade']
+        depth = 1

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
-from clientes.models import Cliente
+from backend.apps.clientes.models import Cliente
 
 
 class ManageCliente(UserAdmin):

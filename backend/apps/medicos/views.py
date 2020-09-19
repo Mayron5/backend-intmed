@@ -5,8 +5,8 @@ from rest_framework.decorators import permission_classes, api_view
 from rest_framework import generics
 from rest_framework import status
 
-from .serializers import MedicoSerializer, EspecialidadeSerializer
-from .models import Medico, Especialidade
+from backend.apps.medicos.serializers import MedicoSerializer, EspecialidadeSerializer
+from backend.apps.medicos.models import Medico, Especialidade
 
 class ListarMedicos(generics.ListAPIView):
     queryset = Medico.objects.all()

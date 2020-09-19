@@ -1,11 +1,15 @@
 from datetime import time
 from django.db import models
-from clientes.models import Cliente
-from agendas.models import Agenda
-from medicos.models import Medico
+from backend.apps.medicos.models import Medico
 
 # Create your models here.
-class Consulta(models.Model):
+class Agenda(models.Model):
+    medico = models.OneToOneField(Medico, models.CASCADE, primary_key=True)
+    dia = models.DateField()
+    def __str__(self):
+        return 'Agenda do Dr. ' + self.medico.nome
+
+class Horario(models.Model):
     HORARIO_CHOICES = (
         (time(8, 00, 00), '08:00'),
         (time(8, 30, 00), '08:30'),
@@ -28,12 +32,5 @@ class Consulta(models.Model):
         (time(17, 00, 00), '17:00'),
     )
 
-    dia = models.DateField()
-    horario = models.TimeField(choices=HORARIO_CHOICES)
-    data_agendamento = models.DateTimeField(auto_now_add=True)
-    cliente = models.ForeignKey(Cliente, models.CASCADE)
     agenda = models.ForeignKey(Agenda, models.CASCADE)
-    medico = models.ForeignKey(Medico, models.CASCADE)
-
-    def __str__(self):
-        return str('Medico - ' + self.medico.nome + ' | Paciente - ' + self.cliente.username)
+    horario = models.TimeField(choices=HORARIO_CHOICES)

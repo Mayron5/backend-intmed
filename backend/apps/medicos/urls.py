@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf.urls import include, url
 
-from .views import (
+from backend.apps.medicos.views import (
      ListarMedicos,
      detalhes_medico,
      ListarEspecialidades,

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Agenda, Horario
+from backend.apps.agendas.models import Agenda, Horario
 
 
 class ManageAgenda(admin.ModelAdmin):

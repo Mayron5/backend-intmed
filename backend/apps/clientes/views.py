@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework import status
 
-from .serializers import ClienteSerializer
-from .models import Cliente
+from backend.apps.clientes.serializers import ClienteSerializer
+from backend.apps.clientes.models import Cliente
 
 @api_view(['POST'])
 def criar_cliente(request):
