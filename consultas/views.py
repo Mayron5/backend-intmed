@@ -20,6 +20,21 @@ def listar_consultas(request):
 
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def marcar_consulta(request):
+    serializer = ConsultaSerializer(data=request.data)
+    if serializer.is_valid():
+        validated_data = serializer.validated_data
+        Consulta.objects.create(
+            dia = validated_data['dia'],
+            horario = validated_data['horario'],
+            agenda = validated_data['agenda'],
+            cliente = request.user.id
+        )
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def detalhes_consulta(request, pk):

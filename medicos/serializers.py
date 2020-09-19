@@ -6,6 +6,7 @@ class EspecialidadeSerializer(serializers.ModelSerializer):
         model = Especialidade
         fields = '__all__'
 
+
 class MedicoSerializer(serializers.ModelSerializer):
     especialidade = EspecialidadeSerializer(many=False, read_only=True)
     class Meta:

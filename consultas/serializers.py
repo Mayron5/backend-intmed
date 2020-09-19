@@ -8,4 +8,5 @@ class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consulta
         fields = ('id', 'dia', 'horario', 'data_agendamento', 'medico')
-        extra_kwargs = {'cliente': {'write_only': True}}
+        extra_kwargs = {'cliente': {'write_only': True},
+                        'agenda': {'write_only': True}}

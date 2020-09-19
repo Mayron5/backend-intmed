@@ -3,16 +3,17 @@ from django.urls import path
 from django.conf.urls import include, url
 from .views import (
     listar_consultas,
-    detalhes_consulta
+    detalhes_consulta,
+    marcar_consulta
 )
 
 
 
 urlpatterns = [
-    # path('api/consultas/', include([
-    #     path('', ListarConsultas.as_view()),
-    #     path('<int:pk>', DetalhesConsulta.as_view()),
-    # ]))
-    path('api/consultas/', listar_consultas),
-    path('api/consultas/<int:pk>', detalhes_consulta),
+    path('api/consultas/', include([
+        path('', listar_consultas),
+        path('', marcar_consulta),
+        path('<int:pk>', detalhes_consulta),
+    ]))
+
 ]
