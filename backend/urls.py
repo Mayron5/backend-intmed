@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
+from django.conf import settings
+
 
 from backend.apps.clientes.urls import urlpatterns as cliente_url
 from backend.apps.medicos.urls import urlpatterns as medico_url
 from backend.apps.consultas.urls import urlpatterns as consulta_url
+from backend.apps.agendas.urls import urlpatterns as agenda_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +32,6 @@ urlpatterns = [
 urlpatterns += cliente_url
 urlpatterns += medico_url
 urlpatterns += consulta_url
+urlpatterns += agenda_url
+
+admin.site.site_header = settings.ADMIN_SITE_HEADER

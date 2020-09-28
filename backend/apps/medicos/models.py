@@ -9,10 +9,10 @@ class Especialidade(models.Model):
 
 
 class Medico(models.Model):
-    crm = models.IntegerField(null=False)
+    crm = models.IntegerField(null=False, unique=True)
     nome = models.CharField(max_length=150, null=False, blank=False)
     especialidade = models.ForeignKey(Especialidade, models.CASCADE)
-    email = models.EmailField(null=True, blank=True)
-    telefone = models.IntegerField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True, unique=True)
+    telefone = models.IntegerField(null=True, blank=True, unique=True)
     def __str__(self):
         return self.nome

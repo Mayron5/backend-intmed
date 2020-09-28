@@ -3,11 +3,14 @@ from django.db import models
 from backend.apps.medicos.models import Medico
 
 # Create your models here.
+
+
 class Agenda(models.Model):
-    medico = models.OneToOneField(Medico, models.CASCADE, primary_key=True)
+    medico = models.ForeignKey(Medico, models.CASCADE)
     dia = models.DateField()
     def __str__(self):
-        return 'Agenda do Dr. ' + self.medico.nome
+        return 'Agenda do Dr. ' + self.medico.nome + ' do dia - ' + str(self.dia)
+
 
 class Horario(models.Model):
     HORARIO_CHOICES = (
@@ -32,5 +35,8 @@ class Horario(models.Model):
         (time(17, 00, 00), '17:00'),
     )
 
-    agenda = models.ForeignKey(Agenda, models.CASCADE)
+    agenda = models.ForeignKey(Agenda, models.CASCADE, related_name='horarios')
     horario = models.TimeField(choices=HORARIO_CHOICES)
+    disponivel = models.BooleanField(default=False)
+    def __str__(self):
+        return str(self.horario)
