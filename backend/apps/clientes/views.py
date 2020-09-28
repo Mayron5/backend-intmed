@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 from backend.apps.clientes.serializers import ClienteSerializer
 from backend.apps.clientes.models import Cliente
 
+
 @api_view(['POST'])
 def criar_cliente(request):
     serializer = ClienteSerializer(data=request.data)

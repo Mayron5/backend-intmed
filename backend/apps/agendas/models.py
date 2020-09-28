@@ -8,6 +8,7 @@ from backend.apps.medicos.models import Medico
 class Agenda(models.Model):
     medico = models.ForeignKey(Medico, models.CASCADE)
     dia = models.DateField()
+
     def __str__(self):
         return 'Agenda do Dr. ' + self.medico.nome + ' do dia - ' + str(self.dia)
 
@@ -38,5 +39,6 @@ class Horario(models.Model):
     agenda = models.ForeignKey(Agenda, models.CASCADE, related_name='horarios')
     horario = models.TimeField(choices=HORARIO_CHOICES)
     disponivel = models.BooleanField(default=False)
+
     def __str__(self):
         return str(self.horario)

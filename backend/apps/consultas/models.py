@@ -5,6 +5,8 @@ from backend.apps.agendas.models import Agenda
 from backend.apps.medicos.models import Medico
 
 # Create your models here.
+
+
 class Consulta(models.Model):
     HORARIO_CHOICES = (
         (time(8, 00, 00), '08:00'),

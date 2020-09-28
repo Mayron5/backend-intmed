@@ -2,10 +2,10 @@ from django.urls import path
 from django.conf.urls import include, url
 
 from backend.apps.medicos.views import (
-     ListarMedicos,
-     detalhes_medico,
-     ListarEspecialidades,
-     detalhes_especialidade
+    ListarMedicos,
+    detalhes_medico,
+    ListarEspecialidades,
+    detalhes_especialidade
 )
 
 urlpatterns = [

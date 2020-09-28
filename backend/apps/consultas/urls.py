@@ -7,7 +7,6 @@ from backend.apps.consultas.views import (
 )
 
 
-
 urlpatterns = [
     path('api/consultas/', listar_marcar_consultas),
     path('api/consultas/<int:pk>', detalhes_deletar_consulta),

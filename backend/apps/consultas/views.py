@@ -23,12 +23,13 @@ def detalhes_deletar_consulta(request, pk):
         if consulta.cliente == request.user and consulta.dia >= datetime.date.today():
             serializer = ConsultaSerializer(consulta)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response({"message": "Usuario nao autorizado"}, status=status.HTTP_404_NOT_FOUND)
     elif request.method == 'DELETE':
         if consulta.dia >= datetime.date.today():
             consulta.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_404_NOT_FOUND)
+
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -36,7 +37,8 @@ def listar_marcar_consultas(request):
     if request.method == 'GET':
 
         lista_de_consultas = []
-        consultas = Consulta.objects.filter(cliente=request.user).order_by('-dia')
+        consultas = Consulta.objects.filter(
+            cliente=request.user).order_by('-dia')
         for consulta in consultas:
             if consulta.dia >= datetime.date.today():
                 lista_de_consultas.append(consulta)
@@ -54,21 +56,21 @@ def listar_marcar_consultas(request):
                     .get(horario=validated_data['horario'])
 
                 if (not horario.disponivel
-                    and validated_data['horario'] != str(horario.horario)):
+                        and validated_data['horario'] != str(horario.horario)):
 
                     return Response({"message": "Horario nao disponivel"},
                                     status=status.HTTP_400_BAD_REQUEST)
 
                 if (agenda.dia >= datetime.date.today()
                     and datetime.datetime.now().strftime("%H:%M:%S")
-                    >= str(validated_data['horario'])):
+                        >= str(validated_data['horario'])):
 
                     consulta = Consulta(
-                        dia = agenda.dia,
-                        horario = validated_data['horario'],
-                        agenda = agenda,
-                        cliente = request.user,
-                        medico = agenda.medico
+                        dia=agenda.dia,
+                        horario=validated_data['horario'],
+                        agenda=agenda,
+                        cliente=request.user,
+                        medico=agenda.medico
                     )
                     horario.disponivel = False
                     horario.save()

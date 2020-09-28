@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from backend.apps.medicos.models import Medico, Especialidade
 
+
 class EspecialidadeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Especialidade

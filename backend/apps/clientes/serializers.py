@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from backend.apps.clientes.models import Cliente
 
+
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente

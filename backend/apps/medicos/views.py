@@ -8,6 +8,7 @@ from rest_framework import status
 from backend.apps.medicos.serializers import MedicoSerializer, EspecialidadeSerializer
 from backend.apps.medicos.models import Medico, Especialidade
 
+
 class ListarMedicos(generics.ListAPIView):
     queryset = Medico.objects.all()
     serializer_class = MedicoSerializer
