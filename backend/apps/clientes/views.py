@@ -15,11 +15,6 @@ def criar_cliente(request):
     data = {}
     if serializer.is_valid():
         cliente = serializer.save()
-        # Cliente.objects.create_user(
-        #     validated_data['username'],
-        #     validated_data['email'],
-        #     validated_data['password']
-        # )
         data['response'] = 'Cliente registrado com sucesso.'
         data['email'] = cliente.email
         data['username'] = cliente.username

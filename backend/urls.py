@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from django.conf import settings
+from rest_framework.urlpatterns import format_suffix_patterns
 
 
 from backend.apps.clientes.urls import urlpatterns as cliente_url
@@ -33,5 +34,7 @@ urlpatterns += cliente_url
 urlpatterns += medico_url
 urlpatterns += consulta_url
 urlpatterns += agenda_url
+
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json'])
 
 admin.site.site_header = settings.ADMIN_SITE_HEADER

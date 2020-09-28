@@ -76,7 +76,10 @@ def listar_marcar_consultas(request):
                     horario.save()
                     consulta.save()
                     serializer = ConsultaSerializer(consulta)
-                    return Response(serializer.data, status=status.HTTP_201_CREATED)
-                return Response({"message": "Datas passadas nao sao validas"}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response(serializer.data,
+                                    status=status.HTTP_201_CREATED)
+                return Response({"message": "Datas passadas nao sao validas"},
+                                status=status.HTTP_400_BAD_REQUEST)
         except:
-            return Response({"message": "Erro ao agendar consulta"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Erro ao agendar consulta"},
+                            status=status.HTTP_400_BAD_REQUEST)

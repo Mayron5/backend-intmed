@@ -18,6 +18,3 @@ class AgendaSerializer(serializers.ModelSerializer):
         fields = ('id', 'medico', 'dia', 'horarios')
 
         depth = 2
-
-    # def get_horarios(self, obj):
-    #     return [horario.horario for horario in Horario.objects.filter(agenda=self.)]
