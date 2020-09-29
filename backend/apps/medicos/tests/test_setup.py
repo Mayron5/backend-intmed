@@ -17,6 +17,7 @@ ESPECIALIDADES = [
     'Geral'
 ]
 
+
 class TestSetUp(APITestCase):
     def setUp(self):
         self.fake = Faker()
@@ -47,8 +48,6 @@ class TestSetUp(APITestCase):
         self.listar_especialidades_url = reverse('listar_especialidades')
         self.detalhes_especialidade_url = reverse('detalhes_especialidade',
                                                   kwargs={'pk': 1})
-
-
 
         self.api_authentication()
 

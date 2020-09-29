@@ -40,4 +40,3 @@ class MedicoTestViews(TestSetUp):
         self.client.force_authenticate(user=None)
         response = self.client.get(self.detalhes_especialidade_url)
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
-

@@ -22,5 +22,3 @@ class ClienteTestViews(TestSetUp):
         self.assertEqual(response.data['email'], self.user_data['email'])
         self.assertEqual(response.data['username'], self.user_data['username'])
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-

@@ -52,9 +52,9 @@ class TestSetUp(APITestCase):
             horario=datetime.time(17, 00, 00)
         )
 
-
         self.listar_consultas_url = reverse('listar_consultas')
-        self.detalhes_consulta_url = reverse('detalhes_deletar_consulta', kwargs={'pk': 1})
+        self.detalhes_consulta_url = reverse(
+            'detalhes_deletar_consulta', kwargs={'pk': 1})
 
         self.api_authentication()
 
