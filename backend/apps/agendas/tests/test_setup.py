@@ -2,20 +2,13 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django.urls import reverse
 from faker import Faker
+import datetime
 import random
 
 from backend.apps.clientes.models import Cliente
+from backend.apps.medicos.models import Medico, Especialidade
+from ..models import Agenda, Horario
 
-from ..models import Medico, Especialidade
-
-ESPECIALIDADES = [
-    'Pediatra',
-    'Cardiologista',
-    'Neurologista',
-    'Nefrologista',
-    'Radiologista',
-    'Geral'
-]
 
 class TestSetUp(APITestCase):
     def setUp(self):
@@ -40,15 +33,17 @@ class TestSetUp(APITestCase):
             email=self.fake.email()
         )
 
-        self.login_url = reverse('login')
+        self.agenda = Agenda.objects.create(
+            medico=self.medico,
+            dia=datetime.datetime(2020, 12, 25),
+        )
 
-        self.listar_medico_url = reverse('listar_medicos')
-        self.detalhes_medico_url = reverse('detalhes_medico', kwargs={'pk': 1})
-        self.listar_especialidades_url = reverse('listar_especialidades')
-        self.detalhes_especialidade_url = reverse('detalhes_especialidade',
-                                                  kwargs={'pk': 1})
+        self.horario = Horario.objects.create(
+            agenda=self.agenda,
+            horario=datetime.time(17, 00, 00)
+        )
 
-
+        self.listar_agendas_url = reverse('listar_agendas')
 
         self.api_authentication()
 
