@@ -3,7 +3,7 @@ from .test_setup import TestSetUp
 from ..models import Cliente
 
 
-class TestViews(TestSetUp):
+class ClienteTestViews(TestSetUp):
     def test_registrar_cliente_sem_dados(self):
         response = self.client.post(self.register_url)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

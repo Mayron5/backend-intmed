@@ -10,11 +10,11 @@ from backend.apps.medicos.views import (
 
 urlpatterns = [
     path('api/medicos/', include([
-        path('', ListarMedicos.as_view()),
-        path('<int:pk>', detalhes_medico)
+        path('', ListarMedicos.as_view(), name='listar_medicos'),
+        path('<int:pk>', detalhes_medico, name='detalhes_medico')
     ])),
     path('api/especialidades/', include([
-        path('', ListarEspecialidades.as_view()),
-        path('<int:pk>', detalhes_especialidade)
+        path('', ListarEspecialidades.as_view(), name='listar_especialidades'),
+        path('<int:pk>', detalhes_especialidade, name='detalhes_especialidade')
     ]))
 ]
